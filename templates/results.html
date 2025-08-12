@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Allergen Density</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='results.css') }}">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+
+<body>
+	<div class="page-container">
+		<h1 id="page-title">STL Allergen Density Calculator</h1>
+		<div id="big-box">
+			<div class="small-box" id="ul">
+				<h1 class="box-title">Personalized Allergen Density</h1>
+				<ul id="allergen-list">
+					<li>Radius: Count (+/-% vs citywide)</li>
+					<li id="density-citywide">Provide Location</li>
+					<li id="density-500">Provide Location</li>
+					<li id="density-1000">Provide Location</li>
+					<li id="density-2500">Provide Location</li>
+				</ul>
+			</div>
+			<div class="small-box" id="ur">
+				<h1 class="box-title">Select Allergens</h1>
+				<div id="tree-form">
+					{% for tree in trees %}
+						<div class="checkbox-container">
+							<input type="checkbox" name="selected_trees" value="{{ tree }}" onchange="handleCheckBoxChange()">
+							<label>{{ tree }}</label>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="small-box" id="ll">
+				<div id="map"></div>
+			</div>
+			<div class="small-box" id="lr">
+				<h1 class="box-title">Data Source</h1>
+				<p>This project would not be possible without data maintained by the STL Forestry Division</p>
+				<p><a href="https://www.stlouis-mo.gov/government/departments/parks/forestry/">St. Louis Forestry Division</a></p>
+				<p><a href="https://www.stlouis-mo.gov/government/departments/parks/forestry/trees/tree-inventory.cfm">STL Street Trees Inventory</a></p>
+			</div>
+		</div>
+	</div>
+  <script src="{{ url_for('static', filename='js/frontend_handling.js') }}"></script>
+</body>
+</html>
