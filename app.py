@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, jsonify
 from allergen_density import handle_sent_coords, unique_trees
+import os
 
 app = Flask(__name__)
 
@@ -19,4 +20,8 @@ def update_coords():
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(
+        host='0.0.0.0',
+        port=int(os.environ.get("PORT",5000)),
+        debug=False
+    )
